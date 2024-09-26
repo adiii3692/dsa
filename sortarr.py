@@ -11,9 +11,7 @@ class Solution:
             self.sortArray(rightArr)
 
             #Now you merge them
-            i = 0
-            j = 0
-            k = 0 
+            i = j = k = 0
 
             while (i<len(leftArr) and j<len(rightArr)):
                 if leftArr[i] < rightArr[j]:
