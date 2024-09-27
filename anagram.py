@@ -25,4 +25,4 @@ class Solution:
 
 s = Solution()
 
-print(s.isAnagram("jar","jam"))
+print(s.isAnagram("cat","hat"))

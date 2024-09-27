@@ -3,26 +3,26 @@ class Solution:
         group = []
 
         #Function that returns true if two words are anagrams of each other
-        def anagram(target:str,word:str)->bool:
-            if len(target)!=len(word):
+        def isAnagram(s: str, t: str) -> bool:
+            s1 = dict()
+            s2 = dict()
+            for i in s:
+                if i not in s1:
+                    s1[i] = 1
+                else:
+                    s1[i] += 1
+            
+            for j in t:
+                if j not in s2:
+                    s2[j] = 1
+                else:
+                    s2[j] += 1
+            
+            if len(s1) != len(s2):
                 return False
-            h = {}
-            for i in word:
-                if i not in h:
-                    h[i] = 1
-                else:
-                    h[i] += 1
             
-            h2 = {}
-            for i in word:
-                if i not in h2:
-                    h2[i] = 1
-                else:
-                    h2[i] += 1
-            
-            
-            for i in h:
-                if i not in h2 or h[i]!=h2[i]:
+            for i in s1:
+                if i not in s2 or s1[i]!=s2[i]:
                     return False
             
             return True
@@ -30,7 +30,7 @@ class Solution:
         for i in range(len(strs)):
             wordGroup  = [strs[i]]
             for j in range(i+1,len(strs)):
-                if anagram(strs[j],strs[i]):
+                if isAnagram(strs[j],strs[i]):
                     wordGroup.append(strs[j])
             group.append(wordGroup)
 
