@@ -1,7 +1,7 @@
 class Solution:
     def groupAnagrams(self, strs: list[str]) -> list[list[str]]:
         group = []
-
+        onlyOnce = set()
         #Function that returns true if two words are anagrams of each other
         def isAnagram(s: str, t: str) -> bool:
             s1 = dict()
@@ -29,12 +29,18 @@ class Solution:
         
         for i in range(len(strs)):
             wordGroup  = [strs[i]]
+            if strs[i] not in onlyOnce:
+                onlyOnce.add(strs[i])
+            else:
+                continue
             for j in range(i+1,len(strs)):
                 if isAnagram(strs[j],strs[i]):
                     wordGroup.append(strs[j])
+                    if strs[j] not in onlyOnce:
+                        onlyOnce.add(strs[j])
             group.append(wordGroup)
 
-        print(group)
+        return group
 
 s = Solution()
-s.groupAnagrams(["act","pots","tops","cat","stop","hat"])
+print(s.groupAnagrams(["x"]))
