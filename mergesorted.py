@@ -1,15 +1,7 @@
 class Solution:
     def merge(self, nums1: list[int], m: int, nums2: list[int], n: int) -> None:
-        arr1 = list()
-        arr2 = list()
-        
         for i in range(m):
-            arr1.append(nums1[i])
-        
-        for i in range(n):
-            arr2.append(nums2[i])
-        
-        arr3 = arr1 + arr2
+            nums1[m] = 
         
         def mergesort(nums:list[int])->list[int]:
             
@@ -45,10 +37,16 @@ class Solution:
             return nums
              
         mergesort(arr3) 
-        print(arr3)
+
+        nums1 = arr3
 
 s = Solution()
 
-s.merge([1,2,3,0,0,0],3,[2,5,6],3)
+nums1 = [1,2,3,0,0,0]
+nums2 = [2,5,6]
+
+s.merge(nums1,3,nums2,3)
+
+print(nums1)
         
         
