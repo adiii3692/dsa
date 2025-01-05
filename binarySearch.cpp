@@ -4,20 +4,18 @@ using namespace std;
 
 class Solution {
 public:
-    int binarySearch(vector<int>& nums, int target) {
-        std::size_t capacity{nums.size()};
-        std::size_t left{0};
-        std::size_t right{capacity-1};
-        
-        while(left<=right && right<capacity){
+    int search(vector<int>& nums, int target) {
+        int left  = 0;
+        int right = nums.capacity()-1;
+        while(left <= right){
             int mid = (left+right)/2;
-
-            if (nums[mid]<target){
-                left = mid+1;
+            
+            if (nums.at(mid)>target){
+                right = mid - 1;
                 continue;
             }
-            else if (nums[mid]>target){
-                right = mid-1;
+            else if (nums.at(mid) < target){
+                left = mid + 1;
                 continue;
             }
             else{
@@ -25,15 +23,8 @@ public:
             }
         }
 
-        return capacity;
+
+        return -1; 
     }
 };
 
-int main(){
-    Solution *sol = new Solution{};
-    vector<int> nums{3,4,5,6,7,8,9};
-    int target = 6;
-    int searchResult = sol->binarySearch(nums,target);
-
-    cout<<"Number "<<target<<" is at index: "<<searchResult<<endl;
-};
