@@ -1,3 +1,3 @@
 import math
 a = math.ceil(2/3)
-print(a)
+print("I'm at work at TNG")
