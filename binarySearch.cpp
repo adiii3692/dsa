@@ -2,29 +2,29 @@
 #include <vector>
 using namespace std;
 
-class Solution {
-public:
-    int search(vector<int>& nums, int target) {
-        int left  = 0;
-        int right = nums.capacity()-1;
-        while(left <= right){
-            int mid = (left+right)/2;
-            
-            if (nums.at(mid)>target){
-                right = mid - 1;
-                continue;
-            }
-            else if (nums.at(mid) < target){
-                left = mid + 1;
-                continue;
-            }
-            else{
-                return mid;
-            }
+size_t binarySearch(vector<int> &nums, int target){
+    size_t l{0},r{nums.size()-1};
+
+    while(l<=r){
+        size_t mid  = (l+r)/2;
+        if (nums.at(mid)>target){
+            r = mid - 1;
         }
-
-
-        return -1; 
+        else if (nums.at(mid)<target){
+            l = mid + 1;
+        }
+        else{
+            return mid;
+        }
     }
-};
+
+    size_t returnVal{1};
+    return returnVal;
+}
+
+int main(){
+    vector<int> nums = {1,3,4,5,6,9};
+    int target = 16;
+    cout<<"Does number "<<target<<" exist: "<<binarySearch(nums,target)<<endl;
+}
 
