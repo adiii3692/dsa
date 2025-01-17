@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <string>
 using namespace std;
 
 int main(){
@@ -16,4 +17,11 @@ int main(){
     for(int i{0};i<v3.size();i++){
         cout<<v3.at(i)<<endl;
     }
+
+
+    cout<<"____________STRING_________"<<endl;
+
+    string s = "HelloThere";
+    s = tolower(s[0]);
+    cout<<s<<endl;
 }
