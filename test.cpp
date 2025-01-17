@@ -7,6 +7,8 @@ int main(){
     vector<int> v1 = {1,2,3,4,5,6,7};
     vector<int> v2 = std::vector<int>(v1.begin(), v1.end()-(v1.size()/2));
     vector<int> v3 = vector<int>(v1.begin()+(v1.size()/2)+1, v1.end());
+    vector<int> sizeCheck(2);
+    cout<<"Size of vector: "<<sizeCheck.size()<<endl;
     
     for(int i{0};i<v2.size();i++){
         cout<<v2.at(i)<<endl;
