@@ -11,36 +11,34 @@ class Solution {
 public:
     ListNode* mergeNodes(ListNode* head) {
         if(head==nullptr || head->next==nullptr){
-            head;
+            return head;
         }
 
-        ListNode* copy = head;
-        int arr[3] = {};
-        int counter = 0;
+        ListNode* counter = head;
+        int zeroCounter = 0;
         int sum = 0;
-        bool start = false;
-        while(copy!=nullptr){
-            //What to do in case you encounter a zero during iteration
-            if(copy->val==0){
-                if(start){
-                    arr[counter] = sum;
-                    counter += 1;
-                    sum = 0;
-                    start = false;
-                    continue;
-                }
-                start = true;
-                copy = copy->next;
+
+        while(counter!=nullptr){
+            //If at a zero, increment zero counter
+            if(counter->val == 0){
+                zeroCounter += 1;
+                counter = counter->next;
                 continue;
             }
-
-            sum += copy->val;
-            copy = copy->next;
+            //If next node is a zero, add the merged node before the zero
+            if(counter->next->val==0){
+                ListNode* merged = new ListNode(sum,nullptr);
+                //If first merged node, make it the head
+                if(zeroCounter==1){
+                    head = merged;
+                    counter = counter->next;
+                    continue;
+                }
+                else{
+                    head->next = merged;
+                }
+            }
         }
-
-        cout<<"The sum 1: "<<arr[0]<<endl;
-        cout<<"The sum 2: "<<arr[1]<<endl;
-        cout<<"The sum 3: "<<arr[2]<<endl;
 
         return head;
     }
