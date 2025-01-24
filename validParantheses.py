@@ -1,22 +1,18 @@
 class Solution:
     def isValid(self, s: str) -> bool:
-        h = {'(':')','[':']','{':'}'}
-        order = {}
-        correct = True
+        if len(s)<=1 or len(s)%2!=0: return False
+        stack = list()
+        check = {')':'(',
+                 ']':'[',
+                 '}':'{'}
         
-        for index,i in enumerate(s):
-            if i==')' or i=='}' or i==']':
-                if i not in order:
-                    order[i] = index
-                continue
-        
-            if h[i] not in s or s.find(h[i])<s.find(i):
-                correct = False
+        for char in s:
+            if char in check.keys():
+                if stack and stack[-1]==check[char]:
+                    stack.pop()
+                else:
+                    return False
+            else:
+                stack.append(char)
 
-        
-        print('order: ',order)
-        return correct
-    
-s = Solution()
-print(s.isValid('([)]'))
-# python3 validParantheses.py
+        return True if not stack else False
