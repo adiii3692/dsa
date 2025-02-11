@@ -13,27 +13,28 @@ using namespace std;
 
 class Solution {
 public:
-
-    void placeNode(ListNode* &node, ListNode* &list){
-        //node being the node to place and list being the list we have to place the node in
-        ListNode* counter{list};
-        for(;counter->next->val<=node->val && counter->next!=nullptr;counter=counter->next){
-            //Just to get the node after which we need to place the 
-        }
-    }
-
     ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
-        //edge cases
-        if ((list1->next==nullptr && list1->val==0) && (list2->next==nullptr && list2->val==0)){
-            return list1;
-        }
-        else if (list1->next==nullptr && list1->val == 0){
-            return list2;
-        }
-        else if (list2->next==nullptr && list2->val == 0){
-            return list1;
+        ListNode* copyList =  new ListNode();
+        ListNode* mergedList = copyList;
+
+        while(list1 && list2){
+            if (list1->val<list2->val){
+                mergedList->next = list1;
+                list1 = list1->next;
+            }
+            else{
+                mergedList->next = list2;
+                list2 = list2->next;;
+            }
+            mergedList = mergedList->next;
         }
 
-        
+        if(list1){
+            mergedList->next = list1;
+        }else{
+            mergedList->next = list2;
+        }
+
+        return copyList->next;
     }
 };
