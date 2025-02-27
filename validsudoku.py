@@ -1,47 +1,39 @@
 class Solution:
-    def validRow(self,row:list[int]) -> bool:
-        rowHash = set()
-
-        for number in row:
-            if number == ".": continue
-            if number not in rowHash:
-                rowHash.add(number)
-            else:
-                return False
+    def isValidSudoku(self, board: List[List[str]]) -> bool:
+        hashSet = set()
+        #Validate Row
+        for row in board:
+            for number in row:
+                if number == '.':
+                    continue
+                if number not in hashSet:
+                    hashSet.add(number)
+                else:
+                    return False
+            hashSet.clear()
         
-        return True
-    
-    def isValidSudoku(self, board: list[list[str]]) -> bool:        
-        for column in range(9):
-            columnList = list()
-            rowList = list()
-            for row in range(9):
-                columnList.append(board[row][column])
-                rowList.append(board[column][row])
-
-            if not self.validRow(rowList): return False
-            if not self.validRow(columnList): return False
-        
-        boxList = list()
-        boxListCounter = 0
+        #Validate Column
         for i in range(9):
             for j in range(9):
-                boxList.append(board[i][j])
-
-        if not self.validRow(boxList): return False
-
-
+                if board[j][i] == '.':
+                    continue
+                if board[j][i] not in hashSet:
+                    hashSet.add(board[j][i])
+                else:
+                    return False
+            hashSet.clear()
+        
+        #Validate sub-boxes
+        for i in (0,3,6):
+            for j in (0,3,6):
+                box = [board[a][b] for a in range(i,i+3) for b in range(j,j+3)]
+                for num in box:
+                    if num == '.':
+                        continue
+                    if num not in hashSet: 
+                        hashSet.add(num)
+                    else:
+                        return False
+                hashSet.clear()
+        
         return True
-
-s = Solution()
-board = [["1","2","2",".","3",".",".",".","."],
- ["4",".",".","5",".",".",".",".","."],
- [".","9","8",".",".",".",".",".","3"],
- ["5",".",".",".","6",".",".",".","3"],
- [".",".",".","8",".","3",".",".","5"],
- ["7",".",".",".","2",".",".",".","6"],
- [".",".",".",".",".",".","2",".","."],
- [".",".",".","4","1","9",".",".","8"],
- [".",".",".",".","8",".",".","7","9"]]
-
-s.isValidSudoku(board)
